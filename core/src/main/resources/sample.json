@@ -1,0 +1,40 @@
+{
+  "coord": {
+    "lon": 139.69,
+    "lat": 35.69
+  },
+  "sys": {
+    "message": 0.0305,
+    "country": "JP",
+    "sunrise": 1422049594,
+    "sunset": 1422086398
+  },
+  "weather": [
+    {
+      "id": 800,
+      "main": "Clear",
+      "description": "Sky is Clear",
+      "icon": "01d"
+    }
+  ],
+  "base": "cmc stations",
+  "main": {
+    "temp": 281.028,
+    "temp_min": 281.028,
+    "temp_max": 281.028,
+    "pressure": 1029.59,
+    "sea_level": 1034.47,
+    "grnd_level": 1029.59,
+    "humidity": 100
+  },
+  "wind": {
+    "speed": 1.21,
+    "deg": 37
+  },
+  "clouds": {
+    "all": 0
+  }, "dt": 1422081127,
+  "id": 1850147,
+  "name": "Tokyo",
+  "cod": 200
+}
