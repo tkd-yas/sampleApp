@@ -3,21 +3,92 @@
 <head lang="ja">
     <meta charset="UTF-8">
     <title>天気予報アプリサンプル</title>
+    <link rel="stylesheet" href="index.css" type="text/css" />
 </head>
   <body>
     <h1>sampleアプリケーション</h1>
     <label for="city">都市</label>
     <input name="city" id="city" type="text"/>
-    <button id="goBtn">get weather</button>
-    <section id="weather"></section>
+    <button id="goBtn">search</button>
+    <section id="section">
+        <table id="template">
+            <td><img id="icon" src="http://openweathermap.org/img/w/{1}.png"></td>
+            <td>
+                <b><a id="cityLink" target="_blank" href="http://openweathermap.org/city/{1}">{1}, {2}</a></b>
+                <img id="flag" src="http://openweathermap.org/images/flags/{1}.png">
+                <b id="description">{1}</b>
+                <p>
+                    <span id="temp">{1}°C</span>
+                    <span id="main">temperature from {1} to {2}°С, wind {3}m/s. clouds {4}%, {5} hpa</span>
+                </p>
+            </td>
+        </table>
+    </section>
     <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
     <script>
+        document.addEventListener('DOMContentLoaded', function(){
+          window.template = $('#template');
+          window.template.parent().html('');
+        });
+
         $('#goBtn').on('click', function(ev){
-            var weather = $('#weather');
-            weather.html('');
-            var result = $('<div></div>').append(('<p>' + $('#city').val() + '</p>'));
-            weather.append(result);
+            $('#section').html('<p id="loading">loading...</p>');
+            var data = {
+                city : $('#city').val()
+            }
+
+            $.ajax({
+                url      : '/weather?',
+                data     : data,
+                dataType : 'json'
+            }).done(function(data){
+               console.log(data);
+                var template = window.template.clone();
+                template.hide();
+                $('#section').append(template);
+                updateDisplay(data);
+                template.show();
+            }).fail(function(xhr){
+                alert('error : [' + xhr.status + ',' + xhr.statusText + ',' + xhr.responseText +']');
+            }).always(function(){
+                $('#loading').remove();
+            });
         })
+
+        var updateDisplay = function( data ){
+            var weather = data.weather[0];
+            var src = $('#icon').attr('src');
+            $('#icon').attr('src', replace(src, [weather.icon]));
+
+            var src = $('#cityLink').attr('href');
+            $('#cityLink').attr('href', replace(src, [data.id]));
+
+            var text = $('#cityLink').text();
+            $('#cityLink').text(replace(text, [data.name, data.sys.country]));
+
+            var src = $('#flag').attr('src');
+            $('#flag').attr('src', replace(src, [data.sys.country.toLowerCase()]));
+
+            $('#description').text(weather.description);
+
+
+            var text = $('#temp').text();
+            $('#temp').text(replace(text, [data.temp]));
+
+            var text = $('#main').text();
+            $('#main').text(replace(text, [data.tempMin, data.tempMax,
+            data.wind.speed, data.clouds.all, data.main.pressure]));
+        }
+
+        var replace = function(src, params) {
+            var tmp = src;
+            params.unshift("");
+            for( var i = 1; i <= params.length; i++ ) {
+                var regexp = new RegExp("\\{" + i + "\\}");
+                tmp = tmp.replace(regexp, params[i], "g");
+            }
+            return tmp;
+        }
     </script>
   </body>
 </html>

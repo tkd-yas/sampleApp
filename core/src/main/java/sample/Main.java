@@ -3,15 +3,16 @@ package sample;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
-import org.springframework.web.bind.annotation.RestController;
 import sample.index.IndexController;
+import sample.weather.OpenWeatherClient;
+import sample.weather.OpenWeatherConfig;
 import sample.weather.WeatherController;
 
 /**
  * Created by yasuhiro on 2015/01/24.
  */
-@RestController
 @EnableAutoConfiguration
 public class Main {
 
@@ -20,13 +21,22 @@ public class Main {
   }
 
   @Bean
-  public IndexController indexController() {
+  public static IndexController indexController() {
     return new IndexController();
   }
 
   @Bean
-  public WeatherController weatherController() {
+  public static WeatherController weatherController() {
     return new WeatherController();
   }
 
+  @Bean
+  public static OpenWeatherClient openWeatherClient(){
+    return new OpenWeatherClient(openWeatherConfig());
+  }
+
+  @Bean
+  public static OpenWeatherConfig openWeatherConfig(){
+    return new OpenWeatherConfig();
+  }
 }
