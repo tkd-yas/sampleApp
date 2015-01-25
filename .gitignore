@@ -1,12 +1,9 @@
 # idea 
 .idea/
 .iml
+*/.iml
 .iws
+*/.iws
 
 # Mac
 .DS_Store
-
-#gradle
-gradle/
-gradlew
-gradlew.bat
