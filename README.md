@@ -1,2 +1,8 @@
 # sampleApp
-サンプルで作る天気予報Webアプリケーション
+サンプル天気予報Webアプリケーション
+
+##構成
+* java8
+* spring-boot-web
+* jquery
+
