@@ -2,37 +2,64 @@
 <html>
 <head lang="ja">
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>天気予報アプリサンプル</title>
+    <!-- Bootstrap CDN -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+    <!-- Bootstrap CDN END -->
     <link rel="stylesheet" href="index.css" type="text/css" />
 </head>
-  <body>
-    <h1>sampleアプリケーション</h1>
-    <label for="city">都市</label>
-    <input name="city" id="city" type="text"/>
-    <button id="goBtn">search</button>
-    <section id="section">
-        <table id="template">
-            <td><img id="icon" src="http://openweathermap.org/img/w/{1}.png"></td>
-            <td>
-                <b><a id="cityLink" target="_blank" href="http://openweathermap.org/city/{1}">{1}, {2}</a></b>
-                <img id="flag" src="http://openweathermap.org/images/flags/{1}.png">
-                <b id="description">{1}</b>
-                <p>
-                    <span id="temp">{1}°C</span>
-                    <span id="main">temperature from {1} to {2}°С, wind {3}m/s. clouds {4}%, {5} hpa</span>
-                </p>
-            </td>
-        </table>
-    </section>
-    <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function(){
-          window.template = $('#template');
-          window.template.parent().html('');
-        });
+<body>
+<div class="container-fluid">
+    <h1 class="text-center">sample Application</h1>
+
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <form action="" class="form-horizontal">
+                <div class="form-group">
+                    <label for="city" class="col-md-2 control-label">都市</label>
+
+                    <div class="col-md-8">
+                        <input name="city" id="city" class="form-control" type="text"/>
+                    </div>
+                    <button id="goBtn" class="btn btn-primary icon-search">search</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div id="section" class="col-md-offset-2">
+                <table id="template">
+                    <td><img id="icon" src="http://openweathermap.org/img/w/{1}.png"></td>
+                    <td>
+                        <b><a id="cityLink" target="_blank" href="http://openweathermap.org/city/{1}">{1}, {2}</a></b>
+                        <img id="flag" src="http://openweathermap.org/images/flags/{1}.png">
+                        <b id="description">{1}</b>
+
+                        <p>
+                            <span id="temp">{1}°C</span>
+                            <span id="main">temperature from {1} to {2}°С, wind {3}m/s. clouds {4}%, {5} hpa</span>
+                        </p>
+                    </td>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<script>
+
+    document.addEventListener('DOMContentLoaded', function () {
+        window.template = $('#template');
+        window.template.parent().html('');
+    });
 
         $('#goBtn').on('click', function(ev){
-            $('#section').html('<p id="loading">loading...</p>');
+            $('#section').html('<p id="loading" class="text-center">loading...</p>');
             var data = {
                 city : $('#city').val()
             }
@@ -42,7 +69,7 @@
                 data     : data,
                 dataType : 'json'
             }).done(function(data){
-               console.log(data);
+                console.log(data);
                 var template = window.template.clone();
                 template.hide();
                 $('#section').append(template);
@@ -53,6 +80,7 @@
             }).always(function(){
                 $('#loading').remove();
             });
+            return false;
         })
 
         var updateDisplay = function( data ){
@@ -77,7 +105,7 @@
 
             var text = $('#main').text();
             $('#main').text(replace(text, [data.tempMin, data.tempMax,
-            data.wind.speed, data.clouds.all, data.main.pressure]));
+                data.wind.speed, data.clouds.all, data.main.pressure]));
         }
 
         var replace = function(src, params) {
@@ -90,5 +118,5 @@
             return tmp;
         }
     </script>
-  </body>
+</body>
 </html>
