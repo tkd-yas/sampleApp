@@ -1,17 +1,19 @@
 package sample.weather;
 
-import org.springframework.boot.context.properties.ConfigurationProperties;
+import lombok.Data;
 import org.springframework.stereotype.Component;
 
 /**
  * Created by yasuhiro on 2015/01/24.
  */
 @Component
-@ConfigurationProperties(prefix = "weather")
+@Data
 public class OpenWeatherConfig {
 
-  String service;
+  private String service;
 
-  String url = "http://api.openweathermap.org/data/2.5/weather";
+  private String url;
+
+  private String forecastUrl;
 
 }

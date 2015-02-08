@@ -1,0 +1,182 @@
+{"cod": "200", "message": 0.585, "city": {
+  "id": 1850147,
+  "name": "Tokyo",
+  "coord": {
+    "lon": 139.691711,
+    "lat": 35.689499
+  },
+  "country": "JP",
+  "population": 8336599
+}, "cnt": 7, "list": [
+  {
+    "dt": 1423360800,
+    "temp": {
+      "day": 6.06,
+      "min": 2.74,
+      "max": 6.21,
+      "night": 2.74,
+      "eve": 5.43,
+      "morn": 6.06
+    },
+    "pressure": 1020.08,
+    "humidity": 100,
+    "weather": [
+      {
+        "id": 501,
+        "main": "Rain",
+        "description": "moderate rain",
+        "icon": "10d"
+      }
+    ],
+    "speed": 2.61,
+    "deg": 353,
+    "clouds": 92,
+    "rain": 12
+  },
+  {
+    "dt": 1423447200,
+    "temp": {
+      "day": 6.58,
+      "min": -0.24,
+      "max": 6.58,
+      "night": -0.05,
+      "eve": 3.72,
+      "morn": -0.24
+    },
+    "pressure": 1024.07,
+    "humidity": 89,
+    "weather": [
+      {
+        "id": 800,
+        "main": "Clear",
+        "description": "sky is clear",
+        "icon": "01d"
+      }
+    ],
+    "speed": 4.63,
+    "deg": 279,
+    "clouds": 0
+  },
+  {
+    "dt": 1423533600,
+    "temp": {
+      "day": 7.8,
+      "min": 0.5,
+      "max": 9.22,
+      "night": 2.06,
+      "eve": 5.75,
+      "morn": 0.5
+    },
+    "pressure": 1023.51,
+    "humidity": 88,
+    "weather": [
+      {
+        "id": 800,
+        "main": "Clear",
+        "description": "sky is clear",
+        "icon": "01d"
+      }
+    ],
+    "speed": 2.91,
+    "deg": 264,
+    "clouds": 0
+  },
+  {
+    "dt": 1423620000,
+    "temp": {
+      "day": 9.75,
+      "min": 1.79,
+      "max": 10.37,
+      "night": 3.16,
+      "eve": 6.26,
+      "morn": 1.79
+    },
+    "pressure": 1023.58,
+    "humidity": 92,
+    "weather": [
+      {
+        "id": 800,
+        "main": "Clear",
+        "description": "sky is clear",
+        "icon": "01d"
+      }
+    ],
+    "speed": 2.33,
+    "deg": 292,
+    "clouds": 0
+  },
+  {
+    "dt": 1423706400,
+    "temp": {
+      "day": 5.44,
+      "min": -1.23,
+      "max": 10.87,
+      "night": 4.8,
+      "eve": 10.87,
+      "morn": -1.23
+    },
+    "pressure": 1017.04,
+    "humidity": 0,
+    "weather": [
+      {
+        "id": 500,
+        "main": "Rain",
+        "description": "light rain",
+        "icon": "10d"
+      }
+    ],
+    "speed": 2.2,
+    "deg": 332,
+    "clouds": 0,
+    "rain": 0.27
+  },
+  {
+    "dt": 1423792800,
+    "temp": {
+      "day": 3.97,
+      "min": 2.23,
+      "max": 6.81,
+      "night": 2.23,
+      "eve": 6.81,
+      "morn": 3.86
+    },
+    "pressure": 1021.53,
+    "humidity": 0,
+    "weather": [
+      {
+        "id": 500,
+        "main": "Rain",
+        "description": "light rain",
+        "icon": "10d"
+      }
+    ],
+    "speed": 3.96,
+    "deg": 13,
+    "clouds": 73,
+    "rain": 1.13
+  },
+  {
+    "dt": 1423879200,
+    "temp": {
+      "day": 3.73,
+      "min": -1.18,
+      "max": 8.94,
+      "night": 1.57,
+      "eve": 8.94,
+      "morn": -1.18
+    },
+    "pressure": 1014.18,
+    "humidity": 0,
+    "weather": [
+      {
+        "id": 800,
+        "main": "Clear",
+        "description": "sky is clear",
+        "icon": "01d"
+      }
+    ],
+    "speed": 3.23,
+    "deg": 315,
+    "clouds": 0
+  }
+]}

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class WeatherController {
 
   private static final Logger logger = LoggerFactory.getLogger(WeatherController.class);
+  private static final Integer DAYS_WEEK = 7;
 
   @Autowired
   private OpenWeatherClient openWeatherClient;
@@ -21,8 +22,13 @@ public class WeatherController {
   @RequestMapping("/weather")
   public Object weather( @RequestParam String city ) {
     logger.info("weather requested : " + city);
+    return openWeatherClient.getCityWeather(city);
+  }
 
-    Object result = openWeatherClient.executeQuery(city);
-    return result;
+
+  @RequestMapping("/forecast")
+  public Object forecast( @RequestParam String cityId ) {
+    logger.info("forecast requested : city={}, days={}", cityId, DAYS_WEEK);
+    return openWeatherClient.getForecastByCityId(cityId, DAYS_WEEK);
   }
 }

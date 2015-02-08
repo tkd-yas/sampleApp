@@ -1,3 +1,4 @@
+// weather
 {
   "coord": {
     "lon": 139.69,
@@ -33,8 +34,67 @@
   },
   "clouds": {
     "all": 0
-  }, "dt": 1422081127,
+  },
+  "dt": 1422081127,
   "id": 1850147,
   "name": "Tokyo",
   "cod": 200
 }
+
+// forecast
+// http://api.openweathermap.org/data/2.5/forecast/forecast?q=tokyo&cnt=7&units=metric
+{
+"cod":"200",
+"message":0.0953,
+"city":{
+"id":1850147,
+"name":"Tokyo",
+"coord":{
+"lon":139.691711,
+"lat":35.689499
+},
+"country":"JP",
+"population":0,
+"sys":{
+"population":0
+}
+},
+"cnt":7,
+"list":[
+{
+"dt":1422756000,
+"temp":{
+"day":3.33,
+"min":-0.41,
+"max":3.33,
+"night":-0.41,
+"eve":3.33,
+"morn":3.33
+},
+"pressure":1032.25,
+"humidity":83,
+"weather":[
+{
+"id":800,
+"main":"Clear",
+"description":"sky is clear",
+"icon":"01n"
+}
+],
+"speed":6.85,
+"deg":314,
+"clouds":0
+},
+{
+"dt":1422842400,
+"temp":{
+"day":7.14,
+"min":-0.7,
+"max":7.76,
+"night":-0.38,
+"eve":4.1,
+"morn":-0.7
+},
+"pressure":1033.36,
+"humidity":86,
+"weather":[{"id":800,"main":"Clear","description":"sky is clear","icon":"01d"}],"speed":5.61,"deg":311,"clouds":0},{"dt":1422928800,"temp":{"day":6.74,"min":-2.39,"max":7.68,"night":-0.45,"eve":3.55,"morn":-2.39},"pressure":1033.97,"humidity":90,"weather":[{"id":800,"main":"Clear","description":"sky is clear","icon":"01d"}],"speed":3.06,"deg":329,"clouds":0},{"dt":1423015200,"temp":{"day":6.9,"min":-1.96,"max":7.63,"night":1.32,"eve":4.9,"morn":-1.96},"pressure":1030.76,"humidity":89,"weather":[{"id":802,"main":"Clouds","description":"scattered clouds","icon":"03d"}],"speed":2.43,"deg":344,"clouds":36},{"dt":1423101600,"temp":{"day":0.89,"min":-2.58,"max":4.67,"night":2.65,"eve":4.67,"morn":-2.58},"pressure":1021.51,"humidity":0,"weather":[{"id":501,"main":"Rain","description":"moderate rain","icon":"10d"}],"speed":2.06,"deg":330,"clouds":90,"rain":3.36},{"dt":1423188000,"temp":{"day":1.72,"min":-6.38,"max":4.05,"night":-6.38,"eve":4.05,"morn":2.01},"pressure":1008.14,"humidity":0,"weather":[{"id":600,"main":"Snow","description":"light snow","icon":"13d"}],"speed":5.75,"deg":333,"clouds":89,"rain":20.37,"snow":1.26},{"dt":1423274400,"temp":{"day":0.23,"min":-3.49,"max":4.01,"night":-1.99,"eve":4.01,"morn":-3.49},"pressure":1014.55,"humidity":0,"weather":[{"id":500,"main":"Rain","description":"light rain","icon":"10d"}],"speed":2.37,"deg":290,"clouds":4}]}

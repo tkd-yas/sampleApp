@@ -3,6 +3,7 @@ package sample;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import sample.index.IndexController;
 import sample.weather.OpenWeatherClient;
@@ -29,13 +30,15 @@ public class Main {
     return new WeatherController();
   }
 
+
   @Bean
-  public static OpenWeatherClient openWeatherClient() {
-    return new OpenWeatherClient(openWeatherConfig());
+  @ConfigurationProperties(prefix = "weather")
+  public OpenWeatherConfig openWeatherConfig() {
+    return new OpenWeatherConfig();
   }
 
   @Bean
-  public static OpenWeatherConfig openWeatherConfig() {
-    return new OpenWeatherConfig();
+  public OpenWeatherClient openWeatherClient() {
+    return new OpenWeatherClient(openWeatherConfig());
   }
 }

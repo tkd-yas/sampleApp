@@ -47,6 +47,14 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <table id="daily" class="table table-bordered">
+                <thead></thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
 </div>
 <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
 <!-- Latest compiled and minified JavaScript -->
@@ -59,29 +67,35 @@
     });
 
         $('#goBtn').on('click', function(ev){
+            $('#daily').html('<thead></thead><tbody></tbody>');
             $('#section').html('<p id="loading" class="text-center">loading...</p>');
             var data = {
                 city : $('#city').val()
             }
 
             $.ajax({
-                url      : '/weather?',
+                url: '/weather',
                 data     : data,
-                dataType : 'json'
+                dataType: 'json',
+                cache: true
             }).done(function(data){
-                console.log(data);
+
+//                console.table(data);
                 var template = window.template.clone();
                 template.hide();
                 $('#section').append(template);
                 updateDisplay(data);
                 template.show();
+
+                $('#loading').remove();
+
+                forecast(data.id);
+
             }).fail(function(xhr){
                 alert('error : [' + xhr.status + ',' + xhr.statusText + ',' + xhr.responseText +']');
-            }).always(function(){
-                $('#loading').remove();
             });
             return false;
-        })
+        });
 
         var updateDisplay = function( data ){
             var weather = data.weather[0];
@@ -117,6 +131,58 @@
             }
             return tmp;
         }
+
+    function forecast(cityId) {
+        $.ajax({
+            url: '/forecast',
+            data: {
+                cityId: cityId
+            },
+            dataType: 'json',
+            cache: true
+        }).done(function (data) {
+//            console.table(data);
+
+            updateForecastView(data.list);
+        }).fail(function (xhr) {
+            alert('error : [' + xhr.status + ',' + xhr.statusText + ',' + xhr.responseText + ']');
+        });
+    }
+
+    function updateForecastView(daily) {
+        var head = $('#daily').find('thead');
+        head.html('');
+        var headerTR = document.createElement('tr');
+        var body = $('#daily').find('tbody');
+        body.html('');
+        var bodyTR = document.createElement('tr');
+
+        daily.forEach(function (weather) {
+
+            var head_td = document.createElement('td');
+            head_td.setAttribute('class', 'day text-center');
+            var text = document.createTextNode(weather.dt);
+            head_td.appendChild(text);
+            headerTR.appendChild(head_td);
+
+            var daily_body_td = document.createElement('td');
+            daily_body_td.setAttribute('class', 'text-center');
+            var daily_img = document.createElement('img');
+            var imgSrc = 'http://openweathermap.org/img/w/' + weather.weather.icon + '.png'
+            daily_img.setAttribute('src', imgSrc);
+            var imgWrapper = document.createElement('div');
+            imgWrapper.appendChild(daily_img);
+            daily_body_td.appendChild(imgWrapper);
+
+            var temp = document.createTextNode(Math.round(weather.temp.min) + ' / ' + Math.round(weather.temp.max));
+            daily_body_td.appendChild(temp);
+            bodyTR.appendChild(daily_body_td);
+
+        });
+
+        head.append(headerTR);
+        body.append(bodyTR);
+    }
     </script>
 </body>
 </html>

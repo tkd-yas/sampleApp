@@ -1,7 +1,9 @@
-package sample.weather;
+package sample.weather.city;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
+import sample.weather.common.Coord;
+import sample.weather.common.Weather;
 
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
@@ -16,7 +18,6 @@ import java.util.Map;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CityWeather {
 
-  public static final Double ABSOLUTE_ZERO = -273.15;
   private Long id;
   private String name;
   private Integer cod;
@@ -26,11 +27,11 @@ public class CityWeather {
   private Map<String, Double> main;
   private Map<String, ?> wind;
   private Map<String, ?> clouds;
-  private Map<String, Double> coord;
+  private Coord coord;
   private Date dt;
 
   private static String convertDegreeCelsius( Double d ) {
-    return BigDecimal.valueOf(d + ABSOLUTE_ZERO).setScale(2, BigDecimal.ROUND_HALF_UP).toPlainString();
+    return BigDecimal.valueOf(d).setScale(0, BigDecimal.ROUND_HALF_UP).toPlainString();
   }
 
   public String getTemp() {

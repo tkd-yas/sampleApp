@@ -1,4 +1,4 @@
 weather:
-    service: openweathermap
-    url: http://api.openweathermap.org/data/2.5/weather
-    imageUrl: http://openweathermap.org/img/
+  service: openweathermap
+  url: http://api.openweathermap.org/data/2.5/weather?units=metric&q={city}
+  forecastUrl: http://api.openweathermap.org/data/2.5/forecast/daily?units=metric&id={cityId}&cnt={days}
